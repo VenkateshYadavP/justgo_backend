@@ -8,6 +8,7 @@
 var express = require('express');
 var getRank=require('./routes/getRank.js');
 // setup middleware
+
 var app=express();
 app.use(express.static(__dirname + '/public')); //setup static public directory
 app.set('view engine', 'jade');
@@ -30,10 +31,14 @@ var services = JSON.parse(process.env.VCAP_SERVICES || "{}");
 // TODO: Get service credentials and communicate with bluemix services.
 
 // The IP address of the Cloud Foundry DEA (Droplet Execution Agent) that hosts this application:
-var host = ('localhost');
+var host = 'localhost';
 // The port on the DEA for communication with the application:
-var port = ( 3000);
+var port = 3000;
 // Start server
-app.listen(port, host);
-console.log('App started on port ' + port);
+
+var http = require('http').Server(app);
+http.listen(port, function(){
+	console.log('App started on port ' + port);
+});
+
 
