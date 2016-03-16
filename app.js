@@ -12,7 +12,7 @@ var app=express();
 app.use(express.static(__dirname + '/public')); //setup static public directory
 app.set('view engine', 'jade');
 app.set('views', __dirname + '/views'); //optional since express defaults to CWD/views
-
+//hello
 // render index page
 app.get('/', function(req, res){
 	res.render('index');
